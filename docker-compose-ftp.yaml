@@ -8,11 +8,10 @@ services:
       - PASV_ENABLE=YES
       - PASV_MIN_PORT=8091
       - PASV_MAX_PORT=8099
-    networks:
-      - rct_storage_backend
-    ports:
-      - "8090:21"
-      - "8091-8099:8091-8099"
+    network_mode: host
+#    ports:
+#      - "8090:21"
+#      - "8091-8099:8091-8099"
     container_name: vftp_servers
     volumes:
       - rct_ftp_data:/home/vsftpd/
