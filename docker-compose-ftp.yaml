@@ -6,12 +6,13 @@ services:
       - FTP_PASS=root
       - PASV_ADDRESS=0.0.0.0
       - PASV_ENABLE=YES
+      - PASV_MIN_PORT=8091
+      - PASV_MAX_PORT=8099
     networks:
       - rct_storage_backend
     ports:
-      - "20:20"
-      - "21:21"
-      - "21100-21110:21100-21110"
+      - "8090:21"
+      - "8091-8099:8091-8099"
     container_name: vftp_servers
     volumes:
       - rct_ftp_data:/home/vsftpd/
