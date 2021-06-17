@@ -4,14 +4,13 @@ services:
     environment:
       - FTP_USER=root
       - FTP_PASS=root
-      - PASV_ADDRESS=0.0.0.0
+      - PASV_ADDRESS=192.168.0.175
       - PASV_ENABLE=YES
-    networks:
-      - rct_storage_backend
-    ports:
-      - "20:20"
-      - "21:21"
-      - "21100-21110:21100-21110"
+    network_mode: host
+    #ports:
+    #  - "20:20"
+    #  - "21:21"
+    #  - "21100-21110:21100-21110"
     container_name: vftp_servers
     volumes:
       - rct_ftp_data:/home/vsftpd/
