@@ -1,20 +1,20 @@
 services:
   web:
-    user: root
-    image: panubo/vsftpd:latest
+    image: fauria/vsftpd:latest
     environment:
       - FTP_USER=root
-      - FTP_PASSWORD=root
-      - FTP_CHOWN_ROOT
-      - FTP_PASV_ADDRESS=0.0.0.0
+      - FTP_PASS=root
+      - PASV_ADDRESS=0.0.0.0
+      - PASV_ENABLE=YES
     networks:
       - rct_storage_backend
     ports:
-      - "8021:21"
-      - "4559-4564:4559-4564"
+      - "20:20"
+      - "21:21"
+      - "21100-21110:21100-21110"
     container_name: vftp_servers
     volumes:
-      - rct_ftp_data:/srv/
+      - rct_ftp_data:/home/vsftpd/
 
 volumes:
   rct_ftp_data:
