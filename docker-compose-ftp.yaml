@@ -15,6 +15,7 @@ services:
     container_name: vftp_servers
     volumes:
       - rct_ftp_data:/home/vsftpd/
+      - /Users/tsinghuaboy/projects/rct-ftp/vsftpd.conf:/etc/vsftpd/vsftpd.conf
 
 volumes:
   rct_ftp_data:
