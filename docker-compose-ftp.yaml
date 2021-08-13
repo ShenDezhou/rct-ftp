@@ -1,19 +1,21 @@
 services:
-  web:
+  ftpweb:
     image: fauria/vsftpd:latest
     environment:
-      - FTP_USER=root
-      - FTP_PASS=root
-      - PASV_ADDRESS=0.0.0.0
+      - FTP_USER=rct
+      - FTP_PASS=rct123
+      - PASV_ADDRESS=192.168.0.175
       - PASV_ENABLE=YES
       - PASV_MIN_PORT=8091
-      - PASV_MAX_PORT=8092
+      - PASV_MAX_PORT=8099
     network_mode: host
+    restart: always
+#    ports:
+#      - "8090:21"
+#      - "8091-8099:8091-8099"
     container_name: vftp_servers
     volumes:
       - rct_ftp_data:/home/vsftpd/
-      # 内网无法改变端口，需要注释掉下一行
-      - /Users/tsinghuaboy/projects/rct-ftp/vsftpd.conf:/etc/vsftpd/vsftpd.conf
 
 volumes:
   rct_ftp_data:
