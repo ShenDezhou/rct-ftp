@@ -1,0 +1,28 @@
+services:
+ ftpweb2022:
+  image: fauria/vsftpd:latest
+  environment:
+   - FTP_USER=rct
+   - FTP_PASS=rct123
+   - PASV_ADDRESS=172.26.183.100
+   - PASV_ENABLE=YES
+   - PASV_MIN_PORT=8091
+   - PASV_MAX_PORT=8099
+  network_mode: host
+  restart: always
+#  ports:
+#   - "8090:21"
+#   - "8091-8099:8091-8099"
+  container_name: vftp_servers_2022
+  volumes:
+   - rct_ftp_data_2022:/home/vsftpd/
+   - /data1/rct2022/:/home/vsftpd/rct/2022/
+
+volumes:
+ rct_ftp_data_2022:
+
+
+networks:
+ rct_storage_backend:
+  external: true
+  driver: bridge

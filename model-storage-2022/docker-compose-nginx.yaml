@@ -1,0 +1,21 @@
+version: '2'
+services:
+ mongo:
+  image: nginx:stable-alpine
+  container_name: rct-nginx-server-2022
+  networks:
+   - rct_storage_backend
+  ports:
+   - "8100:80"
+  restart: always
+  volumes:
+   - rct_ftp_data_2022:/usr/share/nginx/html/:ro
+   - /data1/rct2022/:/usr/share/nginx/html/rct/2022/:ro
+
+volumes:
+ rct_ftp_data_2022:
+
+networks:
+ rct_storage_backend:
+  external: true
+  driver: bridge
